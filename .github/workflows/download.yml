@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       LINK: 
-        description: 'https://downloads.sourceforge.net/project/xiaomi-eu-multilang-miui-roms/xiaomi.eu/MIUI-STABLE-RELEASES/MIUIv14/xiaomi.eu_multi_TAPAS_V14.0.14.0.TMTMIXM_v14-13.zip?ts=gAAAAABm-I0OpYttlGhJHpnFSv4w-kYiBGk3BBQ-TxpKtlXtDNejINST_01AcWP6lLW9v16X-yha8oTPwPY9PpOSvKJhzdf1Tg%3D%3D&use_mirror=altushost-swe&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fxiaomi-eu-multilang-miui-roms%2Ffiles%2Fxiaomi.eu%2FMIUI-STABLE-RELEASES%2FMIUIv14%2F'
+        description: 'link'
         required: true
         default: ''
 
@@ -19,13 +19,13 @@ jobs:
        - name: Dump
          run: |
               sudo apt update -y && sudo apt install aria2 wget -y
-              mkdir download && cd download && aria2c -o tapas.zip ${{ github.event.inputs.LINK }}
+              mkdir download && cd download && aria2c -o file.zip ${{ github.event.inputs.LINK }}
               
        - name: Save
          uses: softprops/action-gh-release@v1
          with:
-           files: /home/runner/work/my_tools/my_tools/download/tapas.zip               
-           name: ${{ github.event.inputs.PART }}
+           files: /home/runner/work/my_tools/my_tools/download/file.zip               
+           name: Downloaded file
            tag_name: ${{ github.run_id }}                    
          env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
