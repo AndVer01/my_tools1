@@ -18,8 +18,8 @@ jobs:
                                
        - name: Dump
          run: |
-              sudo apt update -y && sudo apt install aria2 wget -y
-              mkdir download && cd download && aria2c -o file.zip ${{ github.event.inputs.LINK }}
+              sudo apt update -y && sudo apt install wget -y
+              mkdir download && cd download && wget -O file.zip ${{ github.event.inputs.LINK }}
               
        - name: Save
          uses: softprops/action-gh-release@v1
