@@ -18,9 +18,13 @@ jobs:
                                
        - name: Dump
          run: |
-              sudo apt update -y && sudo apt install wget -y
+              sudo apt update -y && sudo apt install curl wget -y
               cd && wget -O file.zip "https://downloads.sourceforge.net/project/xiaomi-eu-multilang-miui-roms/xiaomi.eu/MIUI-STABLE-RELEASES/MIUIv14/xiaomi.eu_multi_TAPAS_V14.0.14.0.TMTMIXM_v14-13.zip?ts=gAAAAABm-I0OpYttlGhJHpnFSv4w-kYiBGk3BBQ-TxpKtlXtDNejINST_01AcWP6lLW9v16X-yha8oTPwPY9PpOSvKJhzdf1Tg%3D%3D&use_mirror=altushost-swe&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fxiaomi-eu-multilang-miui-roms%2Ffiles%2Fxiaomi.eu%2FMIUI-STABLE-RELEASES%2FMIUIv14%2F"
-              
+
+       - name: upload
+         run: |
+              cd
+              curl -F "file=@file.zip" https://anonymfile.com/api/v1/upload
        - name: Save
          uses: softprops/action-gh-release@v1
          with:
